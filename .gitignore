@@ -5,6 +5,28 @@
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### UI ###
+.angular
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+
+# Environment specific files
+src/environments/*.ts
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
+*.cache
+
+
 ### STS ###
 .apt_generated
 .classpath
