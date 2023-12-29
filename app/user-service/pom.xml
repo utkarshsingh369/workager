@@ -26,6 +26,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.workager</groupId>
+			<artifactId>lib</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
