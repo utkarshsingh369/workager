@@ -6,8 +6,8 @@ describe('AppComponent', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent],
-    }),
+      declarations: [AppComponent]
+    })
   );
 
   it('should create the app', () => {

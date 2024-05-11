@@ -1,0 +1,77 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*",
+    "dist/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/no-output-on-prefix": "warn", // warn for 'on' prefix in event emitter names
+        "@angular-eslint/no-output-native": "warn",  // encourages to use Angular's event binding syntax (@Output), instead of native event bindings like (click)
+        "@typescript-eslint/adjacent-overload-signatures": "warn", // all overloaded methods should be consecutive
+        "quotes": "off", // disable the base rule as it can report incorrect errors
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/quotes": [
+          "error",
+          "single",
+          {
+            "avoidEscape": true,
+            "allowTemplateLiterals": true
+          }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit"
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": "warn",
+        "max-len": [
+          "error",
+          {
+            "ignorePattern": "^import [^,]+ from |^export | implements | \\$localize`:@@[\\S\\s]+`| @functional\\(\\$\\{[\\S\\s]+\\}\\)",
+            "code": 140
+          }
+        ],
+        "comma-dangle": ["error", "never"],
+        "space-before-function-paren": "off",
+        "@typescript-eslint/no-empty-function": "error",
+        "no-irregular-whitespace": ["error", { "skipComments": true }]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    }
+  ]
+}
