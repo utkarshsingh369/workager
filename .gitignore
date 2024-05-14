@@ -1,21 +1,22 @@
 **/target
 **/.mvn
+depTree
 **/HELP.md
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### UI ###
-.angular
+ui/.angular
 
 # Node modules
-node_modules/
+ui/node_modules/
 
 # Build output
-dist/
+ui/dist/
 
 # Environment specific files
-src/environments/*.ts
+ui/src/environments/*.ts
 
 # Editor/IDE specific files
 .vscode/
