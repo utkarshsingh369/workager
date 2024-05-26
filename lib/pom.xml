@@ -8,6 +8,7 @@
   </parent>
   <artifactId>lib</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <name>lib</name>
   <description>Common library</description>
   <properties>
@@ -25,5 +26,9 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <finalName>lib-workager</finalName>
+  </build>
 
 </project>
