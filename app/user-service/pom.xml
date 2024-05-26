@@ -39,6 +39,7 @@
         </configuration>
       </plugin>
     </plugins>
+    <finalName>user-workager</finalName>
   </build>
 
 </project>

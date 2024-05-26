@@ -39,6 +39,7 @@
         </configuration>
       </plugin>
     </plugins>
+    <finalName>auth-workager</finalName>
   </build>
 
 </project>
