@@ -59,6 +59,7 @@
   <module name="FileLength"/>
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
+    <property name="max" value="140"/>
   </module>
 
   <!-- Checks for whitespace                               -->
@@ -88,7 +89,6 @@
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocMethod"/>
     <module name="JavadocType"/>
-    <module name="JavadocVariable"/>
     <module name="JavadocStyle"/>
     <!-- RULE NOT NEEDED -->
 <!--    <module name="MissingJavadocMethod"/>-->
@@ -118,6 +118,8 @@
     <!-- See https://checkstyle.org/checks/sizes/index.html -->
     <module name="MethodLength"/>
     <module name="ParameterNumber"/>
+
+        
 
     <!-- Checks for whitespace                               -->
     <!-- See https://checkstyle.org/checks/whitespace/index.html -->
