@@ -2,8 +2,10 @@ package com.workager.userservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
+@EntityScan(basePackages = "com.workager.lib")
 public class UserServiceApplication {
   protected UserServiceApplication() {}
 
