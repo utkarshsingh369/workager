@@ -1,4 +1,4 @@
-package com.workager.userservice.repositories;
+package com.workager.lib.repositories;
 
 import com.workager.lib.entities.User;
 import java.util.UUID;
