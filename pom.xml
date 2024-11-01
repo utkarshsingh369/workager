@@ -95,6 +95,7 @@
                         <goals>
                             <goal>xml-format</goal>
                         </goals>
+                        <phase>process-sources</phase>
                         <configuration>
                             <indentSize>4</indentSize>
                         </configuration>
