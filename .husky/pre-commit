@@ -1,0 +1,6 @@
+echo "\033[31mRunning hooks\033[0m\n"
+echo "\n\033[34m1. Modifying source files if needed\033[0m\n"
+mvn process-sources
+cd ui && npm run lint --fix && npm run format:ui
+echo "\n\033[34m2. Staging the modifications\033[0m\n"
+cd .. && git add . --verbose

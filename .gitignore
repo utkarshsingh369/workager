@@ -5,12 +5,10 @@ depTree
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+**/node_modules
 
 ### UI ###
 ui/.angular
-
-# Node modules
-ui/node_modules/
 
 # Build output
 ui/dist/
