@@ -2,10 +2,19 @@
   "name": "root",
   "version": "0.0.0",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint-staged": "lint-staged"
   },
   "private": true,
   "devDependencies": {
-    "husky": "^9.1.6"
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "pre-commit": "^1.2.2"
+  },
+  "lint-staged":{
+    "*.ts": ["sh -c 'cd ui && npm run lint --fix && npm run format:ui'"],
+    "*.java": ["sh -c 'mvn process-sources'"],
+    "*.xml": ["sh -c 'mvn process-sources'"],
+    "*.html": ["sh -c 'cd ui && npm run lint --fix && npm run format:ui'"]
   }
 }
