@@ -1,0 +1,2 @@
+echo "\n\033[34m3. Check commit message syntax\033[0m\n"
+node script/commit-msg.js "$1"
