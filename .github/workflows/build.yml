@@ -1,0 +1,103 @@
+name: Integration workflow
+
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+
+jobs:
+    build-app:
+        runs-on: ubuntu-latest
+
+        services:
+          mysql:
+            image: mysql:latest
+            env:
+              MYSQL_ROOT_PASSWORD: ${{secrets.MYSQL_CI_ROOT_PASSWORD}}
+              MYSQL_DATABASE: ${{secrets.MYSQL_CI_DATABASE}}
+              MYSQL_PASSWORD: ${{secrets.MYSQL_CI_PASSWORD}}
+            ports:
+              - 3306:3306
+            options: >-
+              --health-cmd="mysqladmin ping --silent"
+              --health-interval=2s
+              --health-timeout=5s
+              --health-retries=5
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            
+            - name: Set up JDK 17
+              uses: actions/setup-java@v4
+              with:
+                java-version: '17'
+                distribution: 'microsoft'
+
+            - name: Wait for MYSQL to be ready
+              run: |
+                for i in {1..10}; do
+                  if nc -z localhost 3306; then
+                    echo "MySQL is ready"
+                    break
+                  fi
+                  echo "Retrying in 3 seconds..."
+                  sleep 3
+                done
+
+            - name: Compile
+              run: mvn clean compile
+            
+            - name: Test
+              env:
+                SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/${{secrets.MYSQL_CI_DATABASE}}
+                SPRING_DATASOURCE_USERNAME: ${{secrets.MYSQL_CI_USER}}
+                SPRING_DATASOURCE_PASSWORD: ${{secrets.MYSQL_CI_PASSWORD}}
+              run: mvn test
+
+            - name: Package
+              env:
+                SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/${{secrets.MYSQL_CI_DATABASE}}
+                SPRING_DATASOURCE_USERNAME: ${{secrets.MYSQL_CI_USER}}
+                SPRING_DATASOURCE_PASSWORD: ${{secrets.MYSQL_CI_PASSWORD}}
+              run: mvn package
+
+            - name: Install
+              env:
+                SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/${{secrets.MYSQL_CI_DATABASE}}
+                SPRING_DATASOURCE_USERNAME: ${{secrets.MYSQL_CI_USER}}
+                SPRING_DATASOURCE_PASSWORD: ${{secrets.MYSQL_CI_PASSWORD}}
+              run: mvn install
+
+    build-ui:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout UI
+              uses: actions/checkout@v4
+              with:
+                sparse-checkout: 'ui'
+                fetch-depth: 0
+
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                node-version: '18'
+            
+            - name: Install dependencies
+              working-directory: ./ui
+              run: npm install
+
+            - name: Lint
+              working-directory: ./ui
+              run: npm run lint
+
+            - name: Test
+              working-directory: ./ui
+              run: npm run ci-test
+
+            - name: Build
+              working-directory: ./ui
+              run: npm run build
