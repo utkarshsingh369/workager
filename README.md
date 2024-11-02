@@ -1,4 +1,10 @@
 # WORKAGER
+## 🎯 Goals
+This project aims to:
+
+- 📚 Help me practice and learn industry-standard best practices across the stack.
+- ⚙️ Serve as a base template for future projects, reducing setup time and ensuring quality.
+- 💡 Allow flexibility in deployment architecture (monolithic or microservices) to fit different project needs.
 
 ## Contribution Guidelines
 
