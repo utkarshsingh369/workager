@@ -1,0 +1,59 @@
+name: Build application
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+
+jobs:
+    build-app:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            
+            - name: Set up JDK 17
+              uses: actions/setup-java@v4
+              with:
+                java-version: '17'
+                distribution: 'microsoft'
+
+            - name: Compile
+              run: mvn clean compile
+            
+            - name: Test
+              run: mvn test
+
+            - name: Package
+              run: mvn package
+
+            - name: Install
+              run: mvn install
+
+    build-ui:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout UI
+              uses: actions/checkout@v4
+              with:
+                sparse-checkout: 'ui'
+                fetch-depth: 0
+
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                node-version: '18'
+            
+            - name: Install dependencies
+              working-directory: ./ui
+              run: npm install
+
+            - name: Test
+              working-directory: ./ui
+              run: npm run ci-test
+
+            - name: Build
+              working-directory: ./ui
+              run: npm run build

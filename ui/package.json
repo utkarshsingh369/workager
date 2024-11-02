@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "ci-test": "ng test --browsers=ChromeHeadless --watch=false",
     "format:ui": "prettier --write \"src/**/*.+(ts|html|css|json|md)\"",
     "lint": "ng lint --fix"
   },
