@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .status-container {
+            text-align: center;
+            background: #fff;
+            padding: 30px 20px 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .status-container h1 {
+            color: #4caf50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .status-container p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .status-container .session {
+            font-size: 1rem;
+            color: #555;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-container">
+        <h1 id="serviceName">Service Name</h1>
+        <p>The service is operational and ready to handle requests.</p>
+        <div class="session">
+            <strong>Session ID:</strong> <span id="sessionId">Loading...</span>
+        </div>
+    </div>
+    <script>
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queryArray = queryString.split("&");
+            queryArray.forEach(pair => {
+                const [key, value] = pair.split("=");
+                params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+            });
+            return params;
+        }
+
+        const params = getQueryParams();
+        document.getElementById("serviceName").textContent = params.serviceName || "Unknown Service";
+        document.getElementById("sessionId").textContent = params.sessionId || "N/A";
+    </script>
+</body>
+</html>
