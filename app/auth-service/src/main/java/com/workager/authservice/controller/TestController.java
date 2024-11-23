@@ -1,14 +1,20 @@
 package com.workager.authservice.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api/auth/test")
+@Controller
+@RequestMapping("/api/v1/test/auth")
 public class TestController {
   @GetMapping("/")
-  public String getHelloWorld() {
-    return "[AUTH-SERVICE] Hello World";
+  public String getHelloWorld(final HttpServletRequest servletRequest) {
+    String serviceName = "AUTH-SERVICE";
+    String sessionId = servletRequest.getSession().getId();
+    return "redirect:/service-status/success.html?serviceName="
+        + serviceName
+        + "&sessionId="
+        + sessionId;
   }
 }
