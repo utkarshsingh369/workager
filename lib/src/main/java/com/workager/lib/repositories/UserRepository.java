@@ -4,4 +4,6 @@ import com.workager.lib.entities.User;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, UUID> {}
+public interface UserRepository extends JpaRepository<User, UUID> {
+  User findByUsername(String username);
+}
