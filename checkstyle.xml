@@ -88,7 +88,9 @@
         <module name="TypeName"/>
         <!-- Checks for imports                              -->
         <!-- See https://checkstyle.org/checks/imports/index.html -->
-        <module name="AvoidStarImport"/>
+        <module name="AvoidStarImport">
+            <property name="excludes" value="jakarta.persistence,org.springframework.web.bind.annotation"/>
+        </module>
         <module name="IllegalImport"/>
         <!-- defaults to sun.* packages -->
         <module name="RedundantImport"/>
@@ -127,7 +129,9 @@
         <!-- See https://checkstyle.org/checks/coding/index.html -->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+        </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber"/>
