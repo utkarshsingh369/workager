@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/api/v1/test/user")
+@RequestMapping("/api/v1/user/health")
 public class TestController {
   @GetMapping("/")
   public String getHelloWorld(final HttpServletRequest servletRequest) {
