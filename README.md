@@ -104,6 +104,23 @@ workager/
 ├── ui/
 │
 └── lib/
+    │
+    ├── java/
+    │   │
+    │   ├── constants/
+    │   │
+    │   ├── entities/
+    │   │
+    │   ├── enums/
+    │   │
+    │   ├── payloads/
+    │   │
+    │   └── repositories/
+    │
+    └── resources/
+        │
+        └── global-application-config.yml
+
 
 ```
 
@@ -111,7 +128,7 @@ workager/
 - If port 3308 is already in use, modify the port mapping in the MySQL container command
 - Ensure all required ports are free before starting services
 - Check Docker/Podman daemon is running before container operations
-- If using docker instead of podman, add following in /etc/containers/registries.conf
+- If using podman instead of docker, add following in /etc/containers/registries.conf
     ```
         unqualified-search-registries = ["docker.io"]
     ```
