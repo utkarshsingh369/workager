@@ -31,15 +31,13 @@ public class User {
   @Column(nullable = false, length = DataValidationConstants.USER_PASSWORD_MAX_LENGTH)
   private String password;
 
-  @ElementCollection(
-      fetch =
-          FetchType
-              .LAZY) // To map a table for collection of basic (int, string, etc.) or @Embeddable
-  // entities. Here, Set<String>.
-  @CollectionTable(
-      name = "user_roles",
-      joinColumns = @JoinColumn(name = "user_id")) // To customize the mapped table
-  @Enumerated(EnumType.STRING) // To define how to store enum values in db (STRING or ORDINAL).
+  // To map a table for collection of basic (int, string, etc.) or @Embeddable entities. Here,
+  // Set<String>.
+  @ElementCollection(fetch = FetchType.EAGER)
+  // To customize the mapped table
+  @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+  // To define how to store enum values in db (STRING or ORDINAL).
+  @Enumerated(EnumType.STRING)
   @Column(nullable = false, name = "role")
   private Set<Role> role;
 
