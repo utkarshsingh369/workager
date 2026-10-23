@@ -37,9 +37,9 @@ public class SecurityOverrideConfig {
 
   @Bean
   public AuthenticationProvider authenticationProvider() {
-    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+    DaoAuthenticationProvider authProvider =
+        new DaoAuthenticationProvider(this.userDetailsAuthService);
     authProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
-    authProvider.setUserDetailsService(this.userDetailsAuthService);
     return authProvider;
   }
 }
