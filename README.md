@@ -24,9 +24,9 @@ To maintain consistency, please format your commit messages as follows:
 ## Local Development Environment 🛠️
 
 ### Prerequisites 📋
-- Java 17 or higher
+- Java 25 or higher
 - Maven 3.8+
-- Node.js 18+ and npm
+- Node.js 22.22.3+, 24.15.0+, or 26+ and npm
 - Angular CLI
 - Docker/Podman
 - MySQL 8.0
@@ -60,9 +60,13 @@ mvn clean install
 ```
 
 #### 4. Running the Services ▶️
-Start individual Spring Boot services:
+Build all Maven modules, then open each Spring Boot service in its own macOS Terminal window:
 ```bash
-*** Make sure lib has been built first ***
+./script/run-services.sh
+```
+
+To start a service manually:
+```bash
 cd app/[service-name]
 mvn spring-boot:run
 ```

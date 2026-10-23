@@ -7,14 +7,22 @@
   },
   "private": true,
   "devDependencies": {
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
-    "pre-commit": "^1.2.2"
+    "husky": "9.1.7",
+    "lint-staged": "17.6.0",
+    "pre-commit": "2.0.0"
   },
-  "lint-staged":{
-    "*.ts": ["sh -c 'cd ui && npm run lint --fix && npm run format:ui'"],
-    "*.java": ["sh -c 'mvn process-sources'"],
-    "*.xml": ["sh -c 'mvn process-sources'"],
-    "*.html": ["sh -c 'cd ui && npm run lint --fix && npm run format:ui'"]
+  "lint-staged": {
+    "*.ts": [
+      "sh -c 'cd ui && npm run lint --fix && npm run format:ui'"
+    ],
+    "*.java": [
+      "sh -c 'mvn process-sources'"
+    ],
+    "*.xml": [
+      "sh -c 'mvn process-sources'"
+    ],
+    "*.html": [
+      "sh -c 'cd ui && npm run lint --fix && npm run format:ui'"
+    ]
   }
 }
