@@ -20,7 +20,7 @@
                         "outputPath": "dist/ui",
                         "index": "src/index.html",
                         "browser": "src/main.ts",
-                        "polyfills": ["zone.js"],
+                        "polyfills": ["zone.js", "@angular/localize/init"],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": [
@@ -95,9 +95,7 @@
         }
     },
     "cli": {
-        "schematicCollections": [
-          "@angular-eslint/schematics"
-        ],
+        "schematicCollections": ["@angular-eslint/schematics"],
         "analytics": false
     },
     "schematics": {
