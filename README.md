@@ -46,6 +46,14 @@ podman run -d \
   docker.io/library/mysql:8.0
 ```
 
+#### Starting the Services
+Once MySQL is running on host port `3308`, start both backend services from the repository root:
+```bash
+./script/run-services.sh
+```
+
+The script builds the Maven modules and opens the auth and user services in separate macOS Terminal windows.
+
 #### 2. Building Service Images 🏗️
 Navigate to each service directory and build its Docker image:
 ```bash
@@ -60,10 +68,7 @@ mvn clean install
 ```
 
 #### 4. Running the Services ▶️
-Build all Maven modules, then open each Spring Boot service in its own macOS Terminal window:
-```bash
-./script/run-services.sh
-```
+The script above runs `mvn clean install` before opening each Spring Boot service in its own macOS Terminal window.
 
 To start a service manually:
 ```bash
@@ -79,19 +84,14 @@ ng serve
 ```
 
 ### Verification ✅
-Test if services are running correctly by accessing these endpoints:
+After starting the services, check their health endpoints:
 
-- Health Check 🩺:
-    - e.g., User service:
-        ```
-            http://localhost:8082/api/v1/test/user/
+- User service: [http://localhost:8082/api/v1/user/health/](http://localhost:8082/api/v1/user/health/)
+- Auth service: [http://localhost:8081/api/v1/auth/health/](http://localhost:8081/api/v1/auth/health/)
 
-        ```
-        Expected response:
-
-        <img src="assets/images/user-service-healthy.png" alt="Alt text" width="400"/>
-
-
+Both endpoints return a redirect to a service status page. The auth service protects
+all endpoints with HTTP Basic authentication, so use valid credentials for an existing
+user when checking it.
 
 ### Project Structure 📂
 ```
