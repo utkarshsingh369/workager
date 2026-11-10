@@ -41,7 +41,7 @@ module.exports = tseslint.config(
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
-          accessibility: 'explicit',
+          accessibility: 'no-public',
         },
       ],
       '@typescript-eslint/no-empty-function': 'error',

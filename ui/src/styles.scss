@@ -1,4 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+$app-ink: #23332d;
+$app-ink-soft: #3a4b43;
+$app-muted: #7b8982;
+$app-muted-light: #96a19b;
+$app-border: #dfe6e0;
+$app-paper: #fff;
+$app-canvas: #f6f7f3;
+$app-forest: #173f34;
+$app-primary: #276344;
+$app-primary-hover: #1e5338;
+$app-accent: #508a69;
+$app-accent-strong: #327650;
+$app-accent-soft: #eaf5ec;
+$app-highlight: #b6e3c3;
+$app-on-dark: #f7fbf7;
+$app-on-dark-muted: #c1d4ca;
+
+@use 'bootstrap/scss/bootstrap' with (
+  $primary: $app-primary,
+  $secondary: $app-ink-soft,
+  $success: $app-accent-strong,
+  $info: $app-accent,
+  $warning: #a86408,
+  $danger: #b42318,
+  $light: $app-canvas,
+  $dark: $app-forest,
+  $body-color: $app-ink,
+  $body-bg: $app-canvas,
+  $border-color: $app-border,
+  $font-family-base: (Inter, "Segoe UI", sans-serif),
+  $link-color: $app-primary,
+  $link-hover-color: $app-primary-hover
+);
+
+:root {
+  color-scheme: light;
+  --app-ink: #{$app-ink};
+  --app-ink-soft: #{$app-ink-soft};
+  --app-muted: #{$app-muted};
+  --app-muted-light: #{$app-muted-light};
+  --app-border: #{$app-border};
+  --app-paper: #{$app-paper};
+  --app-canvas: #{$app-canvas};
+  --app-forest: #{$app-forest};
+  --app-primary: #{$app-primary};
+  --app-primary-hover: #{$app-primary-hover};
+  --app-accent: #{$app-accent};
+  --app-accent-strong: #{$app-accent-strong};
+  --app-accent-soft: #{$app-accent-soft};
+  --app-highlight: #{$app-highlight};
+  --app-on-dark: #{$app-on-dark};
+  --app-on-dark-muted: #{$app-on-dark-muted};
+}
+
+html {
+  min-height: 100%;
+  background: var(--app-canvas);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(196, 230, 216, 0.56), transparent 34%),
+    radial-gradient(ellipse at 92% 86%, rgba(250, 222, 197, 0.5), transparent 32%),
+    var(--app-canvas);
+  color: var(--app-ink);
+  font-family: var(--bs-body-font-family);
+}
+
+::selection {
+  background: var(--app-highlight);
+  color: var(--app-forest);
+}
