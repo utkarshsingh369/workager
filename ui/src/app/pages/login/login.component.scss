@@ -1,0 +1,39 @@
+.login-card {
+  max-width: 1000px;
+  min-height: 620px;
+}
+
+.welcome-panel {
+  background: radial-gradient(circle at 100% 100%, rgba(211, 235, 220, 0.15), transparent 34%), var(--app-forest);
+}
+
+.eyebrow {
+  letter-spacing: 1.7px;
+}
+
+.brand-mark svg {
+  width: 23px;
+  stroke: var(--app-highlight);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.welcome-copy {
+  max-width: 340px;
+}
+
+.welcome-copy > p {
+  max-width: 290px;
+}
+
+.welcome-copy h1 {
+  font-size: clamp(34px, 4vw, 48px);
+}
+
+@media (max-width: 991.98px) {
+  .login-card {
+    max-width: 640px;
+    min-height: 0;
+  }
+}

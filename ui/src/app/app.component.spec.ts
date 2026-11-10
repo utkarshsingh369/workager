@@ -1,8 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
+import { AuthService } from './service/auth/auth.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -27,9 +28,14 @@ describe('AppComponent', () => {
   it('should navigate to the selected page and mark its link active', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
+    TestBed.inject(AuthService).isLoggedIn.set(true);
+    await TestBed.inject(Router).navigateByUrl('/health-check');
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
     const healthLink = compiled.querySelector<HTMLAnchorElement>('a[routerLink="/health-check"]');
+    expect(healthLink).toBeTruthy();
     healthLink?.click();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -37,18 +43,24 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('app-health-check')).toBeTruthy();
     expect(healthLink?.classList.contains('active')).toBe(true);
     expect(healthLink?.getAttribute('aria-current')).toBe('page');
-    expect(compiled.querySelector('.nav-link[routerLink="/"]')?.classList.contains('active')).toBe(false);
+    expect(compiled.querySelector('.nav-link[routerLink="/home"]')?.classList.contains('active')).toBe(false);
   });
 
   it('should return to Home when the brand link is clicked', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    compiled.querySelector<HTMLAnchorElement>('a[routerLink="/contact"]')?.click();
+    TestBed.inject(AuthService).isLoggedIn.set(true);
+    await TestBed.inject(Router).navigateByUrl('/contact');
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const contactLink = compiled.querySelector('a[routerLink="/contact"]');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const contactLink = compiled.querySelector<HTMLAnchorElement>('a[routerLink="/contact"]');
+    expect(contactLink).toBeTruthy();
+    contactLink?.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     expect(compiled.querySelector('app-contact')).toBeTruthy();
     expect(contactLink?.classList.contains('active')).toBe(true);
 
@@ -56,7 +68,7 @@ describe('AppComponent', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const homeLink = compiled.querySelector('.nav-link[routerLink="/"]');
+    const homeLink = compiled.querySelector('.nav-link[routerLink="/home"]');
     expect(compiled.querySelector('app-home')).toBeTruthy();
     expect(homeLink?.classList.contains('active')).toBe(true);
     expect(homeLink?.getAttribute('aria-current')).toBe('page');
